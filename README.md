@@ -1,3 +1,3 @@
 # Concurso
 
-## En el siguiente proyecto podemos ver un proyecto en java
+## En el siguiente proyecto es hecho en java

@@ -1,4 +1,4 @@
-package controller.solicitud;
+package controller.cuenta;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,29 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.entidades.Solicitud;
 import modelo.servicio.ServicioSolicitud;
-import modelo.servicio.ServicioAdministrador;
 
 /**
- * Servlet implementation class Consulta
+ * Servlet implementation class Administracion
  */
-@WebServlet("/Consulta")
-public class ConsultaSolicitud extends HttpServlet {
+@WebServlet("/admin/administrar")
+public class Administracion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Administracion() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public ConsultaSolicitud() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		boolean redireccion = false;
 		try {
@@ -72,13 +69,10 @@ public class ConsultaSolicitud extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

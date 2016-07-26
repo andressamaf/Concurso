@@ -60,12 +60,12 @@ public class Reporte extends HttpServlet {
 	        PrintWriter out = null;
 	        try
 	        {
-	            fichero = new FileWriter("C:\\Users\\Concurso\\Desktop\\reporte.txt",true);
+	            fichero = new FileWriter("C:\\Users\\aasf9_000\\Desktop\\reporte.txt",true);
 	            out = new PrintWriter(fichero);
 	            @SuppressWarnings("unchecked")
 				ArrayList<Solicitud> solicitudes = ss.consultarPorRangoFechas(fechaInicio, fechaFin);
 	            if(solicitudes != null){
-	            	out.println("PROVINCIA" +"\t" + "CIUDAD" +"\t" + "CEDULA" +"\t" + "APELLIDOS" +"\t" + "NOMBRES" +"\t" + "FECHA" +"\t" + "TELEFONO"  +"\t" + "ESTADO");
+	            	out.println("PROVINCIA" +"\t" + "CIUDAD" +"\t" + "CEDULA" +"\t\t" + "APELLIDOS" +"\t\t" + "NOMBRES" +"\t" + "FECHA" +"\t" + "TELEFONO"  +"\t" + "ESTADO");
 	            	for (Solicitud s : solicitudes)
 	    			{
 	    				out.println(s.getSol_codprov() +"\t" + s.getSol_codciu() +"\t" + s.getSol_ci() +"\t" + s.getSol_apellidos() +"\t" + s.getSol_nombres() +"\t" + s.getSol_fecha() +"\t" + s.getSol_telefono()  +"\t" + s.getSol_estado());	    				

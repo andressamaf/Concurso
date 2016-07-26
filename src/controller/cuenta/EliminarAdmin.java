@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Home
+ * Servlet implementation class EliminarAdmin
  */
-@WebServlet("/Home")
-public class Home extends HttpServlet {
+@WebServlet("/admin/eliminar")
+public class EliminarAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Home() {
+    public EliminarAdmin() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,28 +27,6 @@ public class Home extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		boolean redireccion = true;
-		try {
-			redireccion = (boolean) request.getSession().getAttribute("usuarioActivo");
-
-			if (redireccion == true) {
-				getServletConfig().getServletContext().getRequestDispatcher("/vistas/home2.jsp").forward(request,
-						response);
-			} else {
-				getServletConfig().getServletContext().getRequestDispatcher("/Login").forward(request,
-						response);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error al iniciar ");
-			getServletConfig().getServletContext().getRequestDispatcher("/Login").forward(request,
-					response);
-		}
-		
-		if (redireccion == false) {
-			getServletConfig().getServletContext().getRequestDispatcher("/Login").forward(request,
-					response);
-		}
 	}
 
 	/**
@@ -56,7 +34,6 @@ public class Home extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

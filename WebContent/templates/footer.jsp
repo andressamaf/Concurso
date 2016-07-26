@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <footer class="container-fluid">
-	<p>Copyright &copy; SISASOFT</p>
+	<p>Copyright &copy; Verónica Cárdenas, Yadira Quinchiguango, Andrés Samaniego, Victoria Yánez</p>
 </footer>
 
 <script

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>GET Movie</title>
+<title>Sistema de registro de damnificados</title>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,7 +57,9 @@
 					<li><a
 						href="${pageContext.request.contextPath}/Reporte">Reportes de solicitudes
 					</a></li>
-					
+					<li><a
+						href="${pageContext.request.contextPath}/Administracion">Administración
+					</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/CerrarSesion">Cerrar Sesión</a></li>

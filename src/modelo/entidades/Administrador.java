@@ -1,6 +1,6 @@
 package modelo.entidades;
 
-public class Usuario {
+public class Administrador {
 	private String usr_ci;
 	private String usr_clave;
 	public String getUsr_ci() {

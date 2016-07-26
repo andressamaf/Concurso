@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.entidades.Usuario;
-import modelo.servicio.ServicioUsuario;
+import modelo.entidades.Administrador;
+import modelo.servicio.ServicioAdministrador;
 
 /**
  * Servlet implementation class Login
@@ -35,7 +35,7 @@ public class Login extends HttpServlet {
 		boolean redireccion = true;
 		try {
 			redireccion = (boolean) request.getSession().getAttribute("usuarioActivo");
-
+			System.out.println(redireccion);
 			if (redireccion == true) {
 				getServletConfig().getServletContext().getRequestDispatcher("/Home").forward(request,
 						response);
@@ -44,7 +44,9 @@ public class Login extends HttpServlet {
 						response);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("Error al iniciar");
+			getServletConfig().getServletContext().getRequestDispatcher("/vistas/home.jsp").forward(request, response);
 		}
 
 		if (redireccion == false) {
@@ -69,11 +71,11 @@ public class Login extends HttpServlet {
 			ci = "";
 			password = "";
 		}
-		Usuario usr = new Usuario();
+		Administrador usr = new Administrador();
 		usr.setUsr_ci(ci);
 		usr.setUsr_clave(password);
 
-		ServicioUsuario se = new ServicioUsuario();
+		ServicioAdministrador se = new ServicioAdministrador();
 		request.getSession().setAttribute("usuarioActivo", true);
 		System.out.println(true);
 		doGet(request, response);

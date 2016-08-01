@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.entidades.Administrador;
-import modelo.servicio.ServicioAdministrador;
+import modelo.entidades.*;
+import modelo.servicio.*;
 
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/Login")
+@WebServlet("/")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,26 +32,9 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		boolean redireccion = true;
-		try {
-			redireccion = (boolean) request.getSession().getAttribute("usuarioActivo");
-			System.out.println(redireccion);
-			if (redireccion == true) {
-				getServletConfig().getServletContext().getRequestDispatcher("/Home").forward(request,
-						response);
-			} else {
-				getServletConfig().getServletContext().getRequestDispatcher("/vistas/home.jsp").forward(request,
-						response);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Error al iniciar");
-			getServletConfig().getServletContext().getRequestDispatcher("/vistas/home.jsp").forward(request, response);
-		}
 
-		if (redireccion == false) {
-			getServletConfig().getServletContext().getRequestDispatcher("/vistas/home.jsp").forward(request, response);
-		}
+		getServletConfig().getServletContext().getRequestDispatcher("/vistas/home.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -71,11 +54,11 @@ public class Login extends HttpServlet {
 			ci = "";
 			password = "";
 		}
-		Administrador usr = new Administrador();
+		Usuario usr = new Usuario();
 		usr.setUsr_ci(ci);
 		usr.setUsr_clave(password);
 
-		ServicioAdministrador se = new ServicioAdministrador();
+		ServicioUsuario se = new ServicioUsuario();
 		request.getSession().setAttribute("usuarioActivo", true);
 		System.out.println(true);
 		doGet(request, response);

@@ -8,13 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.entidades.Administrador;
+import modelo.entidades.Usuario;
 
-public class ServicioAdministrador {
+public class ServicioUsuario {
 	
 	public static void main(String[] args) {
-		ServicioAdministrador su = new ServicioAdministrador();
-		Administrador u = new Administrador();
+		ServicioUsuario su = new ServicioUsuario();
+		Usuario u = new Usuario();
 		u.setUsr_ci("1727299420");
 		u.setUsr_clave("1727299420");
 		if (su.permitirIngreso(u)){
@@ -25,14 +25,14 @@ public class ServicioAdministrador {
 		}
 
 	}
-	public boolean permitirIngreso(Administrador administrador){
+	public boolean permitirIngreso(Usuario usuario){
 		try {
 			Class.forName(Constantes.DRIVER);
 			Connection connection = DriverManager.getConnection(Constantes.URL,Constantes.USERNAME, Constantes.PASSWORD);
 			
-			PreparedStatement st = connection.prepareStatement("select * from ADMINISTRADOR where ADMIN_CI = ? and ADMIN_CLAVE = ?");
-			st.setString(1, administrador.getUsr_ci());
-			st.setString(2, administrador.getUsr_clave());
+			PreparedStatement st = connection.prepareStatement("select * from Usuario where usr_ci = ? and usr_clave = ?");
+			st.setString(1, usuario.getUsr_ci());
+			st.setString(2, usuario.getUsr_clave());
 			st.execute();
 			ResultSet rs = st.getResultSet();			
 			
@@ -50,20 +50,20 @@ public class ServicioAdministrador {
 		}
 		return false;
 	}
-	public List<Administrador> listarUsuarios (String ci, String nombre){
-		List<Administrador> lu = new ArrayList<Administrador>();
+	public List<Usuario> listarUsuarios (String ci, String nombre){
+		List<Usuario> lu = new ArrayList<Usuario>();
 		try{
 			Class.forName(Constantes.DRIVER);
 			Connection connection = DriverManager.getConnection(Constantes.URL,Constantes.USERNAME, Constantes.PASSWORD);
-			PreparedStatement st = connection.prepareStatement("select * from ADMINISTRADOR where ADMIN_CI like ? or ADMIN_CLAVE like ?");
+			PreparedStatement st = connection.prepareStatement("select * from Usuario where usr_ci like ? or usr_clave like ?");
 			st.setString(1,ci);
 			st.setString(2, nombre);
 			st.execute();
 			ResultSet rs = st.getResultSet();
 			while (rs.next()) {
-				Administrador u = new Administrador();
-				u.setUsr_ci(rs.getString("ADMIN_CI"));
-				u.setUsr_clave(rs.getString("ADMIN_CLAVE"));
+				Usuario u = new Usuario();
+				u.setUsr_ci(rs.getString("usr_ci"));
+				u.setUsr_clave(rs.getString("usr_clave"));
 			}
 			
 		}

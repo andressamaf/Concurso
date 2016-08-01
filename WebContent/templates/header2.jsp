@@ -21,8 +21,12 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/js/angular.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/js/app.js"></script>
 </head>
-<body>
+<body ng-app="SRD">
 	<header class="container">
 		<h1>Sistema de Registro de Damnificados</h1>
 		<br>

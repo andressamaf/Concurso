@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import modelo.entidades.Solicitud;
 import modelo.servicio.ServicioSolicitud;
-import modelo.servicio.ServicioAdministrador;
+import modelo.servicio.ServicioUsuario;
 
 /**
  * Servlet implementation class Consulta

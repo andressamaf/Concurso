@@ -7,3 +7,6 @@ y en un terminal o cmd corren el siguiente comando en la ubicacion del archivo
 mysql -u usrBase -p srd < srd.sql
 
 usrBase es su usuario.
+
+ALTER TABLE `concurso`.`Usuario` 
+ADD COLUMN `usr_rol` TINYINT(4) NOT NULL AFTER `usr_direccion`;

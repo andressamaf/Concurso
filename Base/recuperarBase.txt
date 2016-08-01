@@ -1,0 +1,9 @@
+Primero crean la base en mysql usen la consola de preferencia para recuperar la base despues
+
+create database srd;
+
+y en un terminal o cmd corren el siguiente comando en la ubicacion del archivo
+
+mysql -u usrBase -p srd < srd.sql
+
+usrBase es su usuario.

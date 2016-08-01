@@ -4,7 +4,7 @@
 <%@ page import="java.util.*,modelo.entidades.*"%>
 
 <%
-	List<Usuario> listaAdmin = (List<Usuario>) request.getAttribute("listaAdmin");
+	List<Administrador> listaAdmin = (List<Administrador>) request.getAttribute("listaAdmin");
 %>
 
 	<section class="container">
@@ -59,15 +59,15 @@
 
 						<tbody>
 						<%
-							for (Usuario u : listaAdmin) {
+							for (Administrador a : listaAdmin) {
 						%>
 							<tr>
-								<td><%=u.getUsr_ci() %></td>
-								<td><%=u.getUsr_clave() %></td>
+								<td><%=a.getUsr_ci() %></td>
+								<td><%=a.getUsr_clave() %></td>
 								<td>
 										<form method="get"
 											action="${pageContext.request.contextPath}/admin/modificar">
-											<button type="submit" class="btn btn-default" value="<%=u.getUsr_ci() %>"
+											<button type="submit" class="btn btn-default" value="<%=a.getUsr_ci() %>"
 												name="adminModificar">
 												<span class="material-icons md-16">&#xE150;</span>
 											</button>
@@ -76,7 +76,7 @@
 									<td>
 										<form method="post"
 											action="${pageContext.request.contextPath}/admin/eliminar">
-											<button type="submit" class="btn btn-default" value="<%=u.getUsr_ci()%>"
+											<button type="submit" class="btn btn-default" value="<%=a.getUsr_ci()%>"
 												name="adminEliminar">
 												<i class="material-icons md-16">&#xE872;</i>
 											</button>
@@ -85,7 +85,7 @@
 									<td>
 										<form method="get"
 											action="${pageContext.request.contextPath}/admin/info">
-											<button type="submit" class="btn btn-default" value="<%=u.getUsr_ci() %>"
+											<button type="submit" class="btn btn-default" value="<%=a.getUsr_ci() %>"
 												name="adminInfo">
 												<i class="material-icons">&#xE8F4;</i>
 											</button>

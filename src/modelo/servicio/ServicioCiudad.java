@@ -12,7 +12,7 @@ import ec.edu.epn.model.vo.Ciudad;
 
 public class ServicioCiudad {
 	private String driver = "com.mysql.jdbc.Driver";
-	private String url = "jdbc:mysql://192.168.216.131:3306/movilDBPrueba";
+	private String url = "jdbc:mysql://192.168.216.131:3306/concurso";
 	private String userName = "bases";
 	private String password = "bases";
 	
@@ -22,24 +22,8 @@ public class ServicioCiudad {
 		return con;
 	}
 	
-	public boolean existeCiudad(String nombreCiudad, String nombrePais){
-		Ciudad ciudad = new Ciudad();
-		ciudad = buscarCiudad(nombreCiudad, nombrePais);
-		try{
-			if (ciudad.getNombreCiudad().equals(nombreCiudad)){
-				return true; 
-			}
-		}catch(Exception e){
-			return false;
-		}
-		return false;
-	}
-	
 	public void registrarCiudad(Ciudad ciudad){
-		boolean insertarRegistro = existeCiudad(ciudad.getNombreCiudad(), ciudad.getNombrePais());
 		ServicePais sp = new ServicePais();
-				
-		if (insertarRegistro == false){
 			try {
 				java.sql.Connection con = establecerConexion();
 				PreparedStatement st = con.prepareStatement("insert into CIUDAD (IDCIUDAD, IDPAIS, NOMBRECIUDAD) values (NULL,?,?)");
@@ -56,7 +40,7 @@ public class ServicioCiudad {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		
 	}
 	
 	public Ciudad buscarCiudad(String nombreCiudad, int nombrePais){
@@ -150,9 +134,8 @@ public class ServicioCiudad {
 	}
 	
 	public void modificarCiudad(Ciudad ciudadModificar, Ciudad ciudadModificador){
-		boolean insertarRegistro = existeCiudad(ciudadModificador.getNombreCiudad(), ciudadModificador.getNombrePais());
+		
 		ServicePais sp = new ServicePais();
-		if (insertarRegistro == false){
 			try {
 				java.sql.Connection con = establecerConexion();
 				PreparedStatement st = 
@@ -170,7 +153,7 @@ public class ServicioCiudad {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		
 	}
 	
 	public void eliminarCiudad(Ciudad ciudad){

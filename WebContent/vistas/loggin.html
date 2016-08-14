@@ -1,0 +1,52 @@
+<div class="appMsg">
+			<div uib-alert ng-repeat="alert in alerts"
+				ng-class="'alert-' + (alert.type || 'warning')"
+				close="closeAlert($index)">{{alert.msg}}</div>
+		</div>
+<div class="row">
+	<div class="col-lg-8">
+		<div class="jumbotron">
+			<div class="row">
+				<div>
+					<h1>SRD</h1>
+					<p>SRD son las siglas del Sistema de Registro de Damnificados,
+						este es un sistema que permite consultar y receptar información de
+						los hogares damnificados.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div>
+		<div class="col-lg-4">
+			<aside>
+				<div class="list-group">
+					<form class="form-horizontal">
+						<fieldset>
+							<div class="form-group">
+								<label for="ci" class="control-label">C&eacute;dula</label>
+								<div>
+									<input type="text" class="form-control" id="ci" name="ci"
+										placeholder="Usuario" required ng-model="usuario.usrCi">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="clave" class="control-label">Clave</label>
+								<div>
+									<input type="password" class="form-control" id="clave"
+										name="clave" placeholder="Clave" required
+										ng-model="usuario.usrClave" >
+								</div>
+							</div>
+						</fieldset>
+						<div>
+							<button type="button" class="btn btn-primary" data-container="body"
+								data-toggle="popover" data-placement="top" ng-click="loggin()">Iniciar
+								sesi&oacute;n</button>
+						</div>
+					</form>
+				</div>
+			</aside>
+		</div>
+	</div>
+</div>
+

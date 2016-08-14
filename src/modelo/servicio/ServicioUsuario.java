@@ -1,42 +1,48 @@
 package modelo.servicio;
 
-import utilidades.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
-import modelo.entidades.Solicitud;
-import modelo.entidades.Usuario;
-
+import modelo.entidades.*;
+import utilidades.Constantes;
+@Path("usuario")
+@Produces("application/json")
 public class ServicioUsuario {
-
-	public static void main(String[] args) {
-		ServicioUsuario su = new ServicioUsuario();
-		Usuario u = new Usuario();
-		u.setUsr_ci("1727299420");
-		u.setUsr_clave("1727299420");
-		if (su.permitirIngreso(u)) {
-			System.out.println("si");
-		} else {
-			System.out.println("no");
-		}
-
-	}
-
-	public boolean permitirIngreso(Usuario usuario) {
-		try {
+	public Connection conexion (){
+		try{
 			Class.forName(Constantes.DRIVER);
 			Connection connection = DriverManager.getConnection(Constantes.URL,
 					Constantes.USERNAME, Constantes.PASSWORD);
-
+			System.out.println("conexion exitosa");
+			return connection;
+		}catch(Exception e){
+			e.printStackTrace();
+			System.out.println("no se pudo conectar a la base");
+			return null;
+		}
+	}
+	@POST
+	@Path("loggin")
+	@Consumes("application/json")
+	public boolean permitirIngreso(Usuario usuario) {
+		try {
+			Connection connection=conexion();
 			PreparedStatement st = connection
 					.prepareStatement("select * from Usuario where usr_ci = ? and usr_clave = ?");
-			st.setString(1, usuario.getUsr_ci());
-			st.setString(2, usuario.getUsr_clave());
+			st.setString(1, usuario.getUsrCi());
+			st.setString(2, usuario.getUsrClave());
 			st.execute();
 			ResultSet rs = st.getResultSet();
 
@@ -53,20 +59,22 @@ public class ServicioUsuario {
 		}
 		return false;
 	}
+	@POST
+	@Path("crear")
+	@Consumes("application/json")
 	public void crearUsuario(Usuario u) {
 		try {
-			Class.forName(Constantes.DRIVER);
-			Connection con = DriverManager.getConnection(Constantes.URL,
-					Constantes.USERNAME, Constantes.PASSWORD);
+			Connection con=conexion();
 			PreparedStatement st = con
 					.prepareStatement("INSERT INTO Usuario (usr_ci,usr_clave,"
-							+ "usr_nombre,usr_correo,usr_telefono,usr_rol) values(?,?,?,?,?,?)");
-			st.setString(1, u.getUsr_ci());
-			st.setString(2, u.getUsr_clave());
-			st.setString(3, u.getUsr_nombre());
-			st.setString(4, u.getUsr_correo());
-			st.setString(5, u.getUsr_telefono());
-			st.setString(6, u.getUsr_rol());
+							+ "usr_nombre,usr_correo,usr_telefono,usr_rol,usr_estadol) values(?,?,?,?,?,?,0)");
+			st.setString(1, u.getUsrCi());
+			st.setString(2, u.getUsrClave());
+			st.setString(3, u.getUsrNombre());
+			st.setString(4, u.getUsrCorreo());
+			st.setString(5, u.getUsrTelefono());
+			st.setString(6, u.getUsrRol());
+			
 			st.execute();
 			st.close();
 			con.close();
@@ -74,21 +82,21 @@ public class ServicioUsuario {
 			e.printStackTrace();
 		}
 	}
-
+	@PUT
+	@Path("modificar")
+	@Consumes("application/json")
 	public void modificarUsuario(Usuario u) {
 		try {
-			Class.forName(Constantes.DRIVER);
-			Connection con = DriverManager.getConnection(Constantes.URL,
-					Constantes.USERNAME, Constantes.PASSWORD);
+			Connection con=conexion();
 			PreparedStatement st = con
 					.prepareStatement("UPDATE Usuario SET usr_nombre=?, usr_clave=?, "
 							+ "usr_rol=?, usr_correo=?, usr_telefono=? where usr_ci=?");
-			st.setString(1, u.getUsr_nombre());
-			st.setString(2, u.getUsr_clave());
-			st.setString(3, u.getUsr_rol());
-			st.setString(4, u.getUsr_correo());
-			st.setString(5, u.getUsr_telefono());
-			st.setString(6, u.getUsr_ci());
+			st.setString(1, u.getUsrNombre());
+			st.setString(2, u.getUsrClave());
+			st.setString(3, u.getUsrRol());
+			st.setString(4, u.getUsrCorreo());
+			st.setString(5, u.getUsrTelefono());
+			st.setString(6, u.getUsrCi());
 			st.executeUpdate();
 			st.close();
 			con.close();
@@ -96,25 +104,25 @@ public class ServicioUsuario {
 			e.printStackTrace();
 		}
 	}
-
-	public Usuario buscarUsuario(String ci) {
+	@GET
+	@Path("buscar")
+	@Consumes("application/json")
+	public Usuario buscarUsuario(@QueryParam("ci")String ci) {
 		Usuario u = new Usuario();
 		try {
-			Class.forName(Constantes.DRIVER);
-			Connection con = DriverManager.getConnection(Constantes.URL,
-					Constantes.USERNAME, Constantes.PASSWORD);
+			Connection con=conexion();
 			PreparedStatement st = con
 					.prepareStatement("SELECT * FROM Usuario where usr_ci=?");
 			st.setString(1, ci);
 			st.execute();
 			ResultSet rs = st.getResultSet();
 			while (rs.next()) {
-				u.setUsr_ci(rs.getString("usr_ci"));
-				u.setUsr_clave(rs.getString("usr_clave"));
-				u.setUsr_correo(rs.getString("usr_correo"));
-				u.setUsr_rol(rs.getString("usr_rol"));
-				u.setUsr_telefono(rs.getString("usr_telefono"));
-				u.setUsr_nombre(rs.getString("usr_nombre"));
+				u.setUsrCi(rs.getString("usr_ci"));
+				u.setUsrClave(rs.getString("usr_clave"));
+				u.setUsrCorreo(rs.getString("usr_correo"));
+				u.setUsrRol(rs.getString("usr_rol"));
+				u.setUsrTelefono(rs.getString("usr_telefono"));
+				u.setUsrNombre(rs.getString("usr_nombre"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -122,13 +130,13 @@ public class ServicioUsuario {
 		}
 		return u;
 	}
-
-	public List<Usuario> listarUsuarios(String nombre) {
+	@GET
+	@Path("listar")
+	@Consumes("application/json")
+	public List<Usuario> listarUsuarios(@QueryParam("nombre")String nombre) {
 		List<Usuario> lu = new ArrayList<Usuario>();
 		try {
-			Class.forName(Constantes.DRIVER);
-			Connection con = DriverManager.getConnection(Constantes.URL,
-					Constantes.USERNAME, Constantes.PASSWORD);
+			Connection con=conexion();
 			PreparedStatement st = con
 					.prepareStatement("SELECT * FROM Usuario where usr_nombre like ?");
 			st.setString(1, nombre.equals("") ? "" : "%" + nombre + "%");
@@ -136,25 +144,26 @@ public class ServicioUsuario {
 			ResultSet rs = st.getResultSet();
 			while (rs.next()) {
 				Usuario u = new Usuario();
-				u.setUsr_ci(rs.getString("usr_ci"));
-				u.setUsr_clave(rs.getString("usr_clave"));
-				u.setUsr_correo(rs.getString("usr_correo"));
-				u.setUsr_rol(rs.getString("usr_rol"));
-				u.setUsr_telefono(rs.getString("usr_telefono"));
-				u.setUsr_nombre(rs.getString("usr_nombre"));
+				u.setUsrCi(rs.getString("usr_ci"));
+				u.setUsrClave(rs.getString("usr_clave"));
+				u.setUsrCorreo(rs.getString("usr_correo"));
+				u.setUsrRol(rs.getString("usr_rol"));
+				u.setUsrTelefono(rs.getString("usr_telefono"));
+				u.setUsrNombre(rs.getString("usr_nombre"));
 				lu.add(u);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("error al listar");
 		}
 		return lu;
 	}
-
-	public void eliminarUsuario(String ci) {
+	@DELETE
+	@Path("eliminar")
+	@Consumes("application/json")
+	public void eliminarUsuario(@QueryParam("ci")String ci) {
 		try {
-			Class.forName(Constantes.DRIVER);
-			Connection con = DriverManager.getConnection(Constantes.URL,
-					Constantes.USERNAME, Constantes.PASSWORD);
+			Connection con=conexion();
 			PreparedStatement st = con.prepareStatement("DELETE from Usuario where usr_ci=?");
 			st.setString(1, ci);
 			st.execute();
@@ -164,10 +173,12 @@ public class ServicioUsuario {
 			e.printStackTrace();
 		}
 	}
-	public Boolean existe(String ci){
+	@GET
+	@Path("existe")
+	@Consumes("application/json")
+	public Boolean existe(@QueryParam("ci")String ci){
 		try{
-			Class.forName(Constantes.DRIVER);
-			Connection connection = DriverManager.getConnection(Constantes.URL,Constantes.USERNAME, Constantes.PASSWORD);			
+			Connection connection=conexion();			
 			PreparedStatement st = connection.prepareStatement("select * from Usuario where usr_ci = ?");
 			st.setString(1, ci);			
 			st.execute();
@@ -185,6 +196,5 @@ public class ServicioUsuario {
 		catch (Exception e){
 			return false;
 		}
-		
 	}
 }

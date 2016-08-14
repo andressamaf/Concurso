@@ -13,6 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="src" path="/FindClub"/>
+	<classpathentry kind="lib" path="C:/Users/aasf9_000/wildfly-8.2.1.Final/modules/system/layers/base/javax/ws/rs/api/main/jaxrs-api-3.0.10.Final.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

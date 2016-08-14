@@ -1,47 +1,60 @@
 package modelo.entidades;
 
-public class Usuario {
-	private String usr_ci;
-	private String usr_clave;
-	private String usr_nombre;
-	private String usr_telefono;
-	private String usr_correo;
-	private String usr_rol;
-	public String getUsr_ci() {
-		return usr_ci;
+import java.io.Serializable;
+
+public class Usuario implements Serializable{
+	private static final long serialVersionUID = 1L;
+	private String usrCi;
+	private String usrClave;
+	private String usrNombre;
+	private String usrTelefono;
+	private String usrCorreo;
+	private String usrRol;
+	private byte estadousr;
+	public Usuario() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setUsr_ci(String usr_ci) {
-		this.usr_ci = usr_ci;
+	public String getUsrCi() {
+		return usrCi;
 	}
-	public String getUsr_clave() {
-		return usr_clave;
+	public void setUsrCi(String usrCi) {
+		this.usrCi = usrCi;
 	}
-	public void setUsr_clave(String usr_clave) {
-		this.usr_clave = usr_clave;
+	public String getUsrClave() {
+		return usrClave;
 	}
-	public String getUsr_nombre() {
-		return usr_nombre;
+	public void setUsrClave(String usrClave) {
+		this.usrClave = usrClave;
 	}
-	public void setUsr_nombre(String usr_nombre) {
-		this.usr_nombre = usr_nombre;
+	public String getUsrNombre() {
+		return usrNombre;
 	}
-	public String getUsr_telefono() {
-		return usr_telefono;
+	public void setUsrNombre(String usrNombre) {
+		this.usrNombre = usrNombre;
 	}
-	public void setUsr_telefono(String usr_telefono) {
-		this.usr_telefono = usr_telefono;
+	public String getUsrTelefono() {
+		return usrTelefono;
 	}
-	public String getUsr_correo() {
-		return usr_correo;
+	public void setUsrTelefono(String usrTelefono) {
+		this.usrTelefono = usrTelefono;
 	}
-	public void setUsr_correo(String usr_correo) {
-		this.usr_correo = usr_correo;
+	public String getUsrCorreo() {
+		return usrCorreo;
 	}
-	public String getUsr_rol() {
-		return usr_rol;
+	public void setUsrCorreo(String usrCorreo) {
+		this.usrCorreo = usrCorreo;
 	}
-	public void setUsr_rol(String usr_rol) {
-		this.usr_rol = usr_rol;
+	public String getUsrRol() {
+		return usrRol;
+	}
+	public void setUsrRol(String usrRol) {
+		this.usrRol = usrRol;
+	}
+	public byte getEstadousr() {
+		return estadousr;
+	}
+	public void setEstadousr(byte estadousr) {
+		this.estadousr = estadousr;
 	}
 	
 }

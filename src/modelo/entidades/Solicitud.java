@@ -1,20 +1,25 @@
 package modelo.entidades;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Solicitud {
+public class Solicitud implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String sol_ci;
 	private String sol_apellidos;
 	private String sol_nombres;
 	private Integer sol_codprov;
 	private Integer sol_codciu;
 	private String sol_sexo;
-	private Date sol_fechaNac;
+	private String sol_fechaNac;
 	private Integer sol_nummiem;
 	private Boolean sol_disc;
 	private String sol_telefono;
-	private Date sol_fecha;
+	private String sol_fecha;
 	private String sol_estado;
+	private String sol_usr;
 	public String getSol_ci() {
 		return sol_ci;
 	}
@@ -51,12 +56,6 @@ public class Solicitud {
 	public void setSol_sexo(String sol_sexo) {
 		this.sol_sexo = sol_sexo;
 	}
-	public Date getSol_fechaNac() {
-		return sol_fechaNac;
-	}
-	public void setSol_fechaNac(Date sol_fechaNac) {
-		this.sol_fechaNac = sol_fechaNac;
-	}
 	public Integer getSol_nummiem() {
 		return sol_nummiem;
 	}
@@ -75,18 +74,29 @@ public class Solicitud {
 	public void setSol_telefono(String sol_telefono) {
 		this.sol_telefono = sol_telefono;
 	}
-	public Date getSol_fecha() {
-		return sol_fecha;
-	}
-	public void setSol_fecha(Date sol_fecha) {
-		this.sol_fecha = sol_fecha;
-	}
 	public String getSol_estado() {
 		return sol_estado;
 	}
 	public void setSol_estado(String sol_estado) {
 		this.sol_estado = sol_estado;
 	}
-	
+	public String getSol_fechaNac() {
+		return sol_fechaNac;
+	}
+	public void setSol_fechaNac(String sol_fechaNac) {
+		this.sol_fechaNac = sol_fechaNac;
+	}
+	public String getSol_fecha() {
+		return sol_fecha;
+	}
+	public void setSol_fecha(String sol_fecha) {
+		this.sol_fecha = sol_fecha;
+	}
+	public String getSol_usr() {
+		return sol_usr;
+	}
+	public void setSol_usr(String sol_usr) {
+		this.sol_usr = sol_usr;
+	}
 	
 }

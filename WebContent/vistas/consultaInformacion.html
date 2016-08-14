@@ -1,0 +1,58 @@
+<div class="appMsg">
+	<div uib-alert ng-repeat="alert in alerts"
+		ng-class="'alert-' + (alert.type || 'warning')"
+		close="closeAlert($index)">{{alert.msg}}</div>
+</div>
+
+	<div class="row">
+		<form class="form-horizontal" method="get">
+			<fieldset>
+				<legend>Consulta de Informaci&oacute;n</legend>
+				<div>
+					<div class="form-group">
+						<label for="ci" class="col-lg-1 control-label">CI</label>
+						<div class="col-lg-5">
+							<input type="text" class="form-control" id="ci"
+								name="ci" placeholder="CI" ng-model="lista.ci">
+						</div>
+						<label for="nombre" class="col-lg-1 control-label">Apellido</label>
+						<div class="col-lg-5">
+							<input type="text" class="form-control" id="nombre"
+								name="apellido" placeholder="Apellido" ng-model="lista.apellido">
+						</div>
+					</div>
+					<div>
+						<button class="btn btn-primary" data-container="body" data-toggle="popover" 
+						data-placement="top" type="button" ng-click="listar()">Buscar</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+		<div class="formclass">
+			<div class="row">
+				<div class="col-xs-12">
+					<table class="table table-striped table-hover ">
+						<thead>
+							<tr>
+								<th>CI</th>
+								<th>Apellidos</th>
+								<th>Nombres</th>
+								<th>Fecha de la solicitud</th>
+								<th>Estado</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr ng-repeat="r in reportes">
+								<td>{{r.sol_ci}}</td>
+								<td>{{r.sol_apellidos}}</td>
+								<td>{{r.sol_nombres}}</td>
+								<td>{{r.sol_fecha}}</td>
+								<td>{{r.sol_estado}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>

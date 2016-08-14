@@ -1,0 +1,137 @@
+<div class="appMsg">
+	<div uib-alert ng-repeat="alert in alerts"
+		ng-class="'alert-' + (alert.type || 'warning')"
+		close="closeAlert($index)">{{alert.msg}}</div>
+</div>
+<div class="row">
+	<div class="col-lg-9">
+		<form class="form-horizontal" name="solReg">
+			<fieldset>
+				<legend>Ingreso de Solicitud de Registro</legend>
+				<div class="form-group">
+					<label for="nombre" class="col-lg-1 control-label">CI</label>
+					<div class="col-lg-5">
+						<div class="col-lg-10">
+							<input name="SOL_CI" type="text" class="form-control" id="CI"
+								placeholder="CI" pattern="^[0-9]*$" required
+								title="Solo se admiten numeros." pattern=".{10,10}" required
+								title="Longitud incorrecta." ng-model="solicitud.sol_ci">
+						</div>
+						<div class="col-lg-2">
+							<spam class="msgError" ng-show="solReg.SOL_CI.$error.required">(*)</spam>
+						</div>
+						<div class="col-lg-10">
+							<div class="alert alert-dismissible alert-danger"
+								ng-show="!validar()">
+								<button type="button" class="close" data-dismiss="alert">&times;</button>
+								<strong>Error!</strong> La c&eacute;dula es incorrecta
+							</div>
+						</div>
+					</div>
+					<label for="nombre" class="col-lg-1 control-label">Teléfono</label>
+					<div class="col-lg-5">
+						<div class="col-lg-11">
+							<input required name="SOL_TELEFONO" type="text"
+								class="form-control" id="telefono" placeholder="telefono" 
+								ng-model="solicitud.sol_telefono">
+						</div>
+						<div class="col-lg-1"></div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="nombre" class="col-lg-1 control-label">Nombres</label>
+					<div class="col-lg-5">
+						<input required name="SOL_NOMBRES" type="text"
+							class="form-control" id="Nombres" placeholder="Nombres"
+							ng-model="solicitud.sol_nombres">
+					</div>
+					<label for="nombre" class="col-lg-1 control-label">Apellidos</label>
+					<div class="col-lg-5">
+						<input required name="SOL_APELLIDOS" type="text"
+							class="form-control" id="Apellidos" placeholder="Apellidos"
+							ng-model="solicitud.sol_apellidos">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="fecha" class="col-lg-1 control-label">Provincia</label>
+					<div class="col-lg-5">
+						<select required name="SOL_CODPROV" class="form-control"
+							id="Provincia" ng-model="solicitud.sol_codprov">
+							<option selected ng-repeat="p in provincias" value="{{p.provincia_id}}">{{p.provincia_nombre}}</option>
+						</select>
+					</div>
+					<label for="fecha" class="col-lg-1 control-label">Ciudad</label>
+					<div class="col-lg-5">
+						<select required name="SOL_CODCIU" class="form-control"
+							id="Ciudad" ng-model="solicitud.sol_codciu">
+							<option selected ng-repeat="c in ciudades" value="{{c.ciudad_id}}">{{c.ciudad_nombre}}</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="fecha" class="col-lg-1 control-label">Nacimiento</label>
+					<div class="col-lg-5">
+						<input required type="date" class="form-control" id="fechaNac"
+							placeholder="yyyy-mm-dd" name="SOL_FECHANAC"
+							ng-model="solicitud.sol_fechaNac" />
+					</div>
+					<label for="nombre" class="col-lg-1 control-label">Num
+						miembros</label>
+					<div class="col-lg-5">
+						<input required name="SOL_NUMMIEM" type="text"
+							class="form-control" id="numeroMiembros"
+							placeholder="numeroMiembros" pattern="^[0-9]*$"
+							title="Solo se admiten numeros." ng-model="solicitud.sol_nummiem">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-1 control-label">Sexo</label>
+					<div class="col-lg-5">
+						<div class="radio">
+							<label> <input type="radio" name="SOL_SEXO"
+								id="optionsRadios1" value="H" ng-model="solicitud.sol_sexo">Hombre
+							</label>
+						</div>
+						<div class="radio">
+							<label> <input type="radio" name="SOL_SEXO"
+								id="optionsRadios2" value="M" ng-model="solicitud.sol_sexo">Mujer
+							</label>
+						</div>
+					</div>
+					<label class="col-lg-2 control-label">Alguna Discapacidad</label>
+					<div class="col-lg-4">
+						<div class="radio">
+							<label> <input type="radio" name="SOL_DISC"
+								id="discapacidadSi" value="true" ng-model="solicitud.sol_disc">Si
+							</label>
+						</div>
+						<div class="radio">
+							<label> <input type="radio" name="SOL_DISC"
+								id="discapacidadNo" value="false" ng-model="solicitud.sol_disc">No
+							</label>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" ng-model="solicitud.sol_fecha">
+			</fieldset>
+			<div>
+				<button type="button" class="btn btn-primary" data-container="body"
+					data-toggle="popover" data-placement="top" ng-click="registrar()">Registrar</button>
+			</div>
+		</form>
+	</div>
+	<div class="col-lg-3">
+		<h2>Datos ingresados</h2>
+		<p>Cedula: {{solicitud.sol_ci}}</p>
+		<p>Nombre: {{solicitud.sol_nombre}}</p>
+		<p>Apellido: {{solicitud.sol_apellido}}</p>
+		<p>Tel&eacute;fono: {{solicitud.sol_telefono}}</p>
+		<p>Provincia: {{solicitud.sol_codprov}}</p>
+		<p>Ciudad: {{solicitud.sol_codciu}}</p>
+		<p>Sexo: {{solicitud.sol_sexo}}</p>
+		<p>N&uacute;mero de miembros: {{solicitud.sol_nummiem}}</p>
+		<p>Discapacidad: {{solicitud.sol_disc}}</p>
+		<p>Fecha de nacimiento: {{solicitud.sol_fechaNac}}</p>
+		<p>Fecha de registro: {{solicitud.sol_fecha}}</p>
+	</div>
+</div>

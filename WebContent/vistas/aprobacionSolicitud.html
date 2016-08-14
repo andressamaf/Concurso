@@ -1,0 +1,71 @@
+<div class="appMsg">
+	<div uib-alert ng-repeat="alert in alerts"
+		ng-class="'alert-' + (alert.type || 'warning')"
+		close="closeAlert($index)">{{alert.msg}}</div>
+</div>
+<div class="row">
+	<form class="form-horizontal" id="loginForm" method="get">
+		<fieldset>
+			<legend>Aprobación de Solicitud</legend>
+			<div>
+				<div class="form-group">
+					<label for="fecha" class="col-lg-2 control-label">Fecha de
+						incio</label>
+					<div class="col-lg-4">
+						<input type="date" class="form-control" id="fechaInicio"
+							placeholder="yyyy-mm-dd" name="fechaInicio" ng-model="fecha.inicio"/>
+					</div>
+					<label for="nombre" class="col-lg-2 control-label">Fecha
+						fin</label>
+					<div class="col-lg-4">
+						<input type="date" class="form-control" id="fechaFin"
+							placeholder="yyyy-mm-dd" name="fechaFin" ng-model="fecha.fin"/>
+					</div>
+					<input type="hidden" class="form-control" id="fechaSolicitud"
+						name="fechaSolicitud" /> <input type="hidden" value="S"
+						class="form-control" id="estadoSolicitud" name="estadoSolicitud" />
+				</div>
+				<div>
+					<button class="btn btn-primary" data-container="body" type="button"
+						data-toggle="popover" data-placement="top" ng-click="listar()">Buscar</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+	<div class="formclass">
+		<div class="row">
+			<div class="col-xs-12">
+				<table class="table table-striped table-hover ">
+					<thead>
+						<tr>
+							<th>CI</th>
+							<th>Apellidos</th>
+							<th>Nombres</th>
+							<th>Fecha de la solicitud</th>
+							<th>Estado</th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr ng-repeat="r in reportes">
+							<td>{{r.sol_ci}}</td>
+							<td>{{r.sol_apellidos}}</td>
+							<td>{{r.sol_nombres}}</td>
+							<td>{{r.sol_fecha}}</td>
+							<td>{{r.sol_estado}}</td>
+							<td>
+								<button type="button" class="btn btn-default"
+									ng-click="aceptar(r)">Aceptar</button>
+							</td>
+							<td>
+								<button type="button" class="btn btn-default"
+								ng-click="rechazar(r)">Rechazar</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

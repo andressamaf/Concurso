@@ -3,6 +3,12 @@
 		ng-class="'alert-' + (alert.type || 'warning')"
 		close="closeAlert($index)">{{alert.msg}}</div>
 </div>
+<div class="alert alert-dismissible alert-danger"
+	ng-show="fecha.inicio>fecha.fin">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Error!</strong> fecha de fin debe ser mayor que la fecha de
+	inicio
+</div>
 <div class="row">
 	<form class="form-horizontal" id="loginForm">
 		<fieldset>
@@ -35,7 +41,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2"></div>
-				<h1 class="col-lg-10">Reporte generado</h1>
+				<h1 class="col-lg-10"><strong>Reporte generado</strong></h1>
+				<p><strong>Fecha Reporte: </strong>{{fecha.actual |date: "yyyy-MM-dd"}}</p>
 				<p>Este reporte va de la fecha {{fecha.inicio |date: "yyyy-MM-dd"}} a la fecha
 					{{fecha.fin |date: "yyyy-MM-dd"}}</p>
 			</div>

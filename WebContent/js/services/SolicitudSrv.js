@@ -12,10 +12,10 @@ app.service("SolicitudSrv", function($http){
 			}
 		)
 	};
-	this.existe = function (solicitud, exito, error){
-		$http.get("http://localhost:8080/SRDrest/servicios/solicitud/existe", solicitud).then(
+	this.existe = function (ci, exito, error){
+		$http.get("http://localhost:8080/SRDrest/servicios/solicitud/existe?ci="+ci).then(
 			function(response){
-				console.log("Exito en el servicio crear" );
+				console.log("Exito en el servicio crear " + response.data);
 				exito(response.data);
 			},
 			function(response){

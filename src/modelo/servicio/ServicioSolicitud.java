@@ -44,14 +44,14 @@ public class ServicioSolicitud {
 	}
 	@GET
 	@Path("existe")
-	@Consumes("Application/json")
-	public Boolean existe(Solicitud solicitud){
+	@Consumes("application/json")
+	public Boolean existe(@QueryParam("ci")String ci){
 		try{
 			Class.forName(Constantes.DRIVER);
 			Connection connection = DriverManager.getConnection(Constantes.URL,Constantes.USERNAME, Constantes.PASSWORD);
 			
 			PreparedStatement st = connection.prepareStatement("select * from SOLICITUD where SOL_CI = ?");
-			st.setString(1, solicitud.getSol_ci());			
+			st.setString(1, ci);			
 			st.execute();
 			ResultSet rs = st.getResultSet();			
 			

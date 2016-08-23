@@ -36,21 +36,38 @@ app.controller("UsuarioModificarCtrl", function($scope, UsuarioSrv, $route,$time
 	$scope.modificar = function() {
 		$scope.execRegistrar = true;
 		$scope.alerts = [];
-		if ($scope.usuario.usrCi == "" || $scope.usuario.usrClave == ""
-				|| $scope.usuario.usrCorreo == ""
-				|| $scope.usuario.usrRol == ""
-				|| $scope.usuario.usrTelefono == ""
-				|| $scope.usuario.usrNombre == "") {
-			$scope.addAlert('danger', 'Error! Complete los campos vacíos.')
-		}
-		if (angular.isUndefined($scope.usuario.usrCi)
-				|| angular.isUndefined($scope.usuario.usrClave)
-				|| angular.isUndefined($scope.usuario.usrCorreo)
-				|| angular.isUndefined($scope.usuario.usrNombre)
-				|| angular.isUndefined($scope.usuario.usrTelefono)
-				|| angular.isUndefined($scope.usuario.usrRol)) {
+		if ($scope.solicitud.sol_ci == ""
+				|| $scope.solicitud.sol_nombres == ""
+				|| $scope.solicitud.sol_apellidos == ""
+				|| $scope.solicitud.sol_sexo == ""
+				|| $scope.solicitud.sol_disc == ""
+				|| $scope.solicitud.sol_fechaNac == ""
+				|| $scope.solicitud.sol_telefono == ""
+				|| $scope.solicitud.sol_numMiem == ""
+				|| $scope.solicitud.sol_estado == ""
+				|| $scope.solicitud.sol_codprov == ""
+				|| $scope.solicitud.sol_codciu == ""
+				|| $scope.solicitud.sol_fecha == ""
+				|| $scope.contrasenia2 == ""
+				) {
 			$scope.addAlert('danger',
-					'Error! Ingrese los campos correctamente.')
+					'Error! Complete los campos vacíos.')
+		}
+		if (angular.isUndefined($scope.solicitud.sol_ci)
+				|| angular.isUndefined($scope.solicitud.sol_nombres)
+				|| angular.isUndefined($scope.solicitud.sol_apellidos)
+				|| angular.isUndefined($scope.solicitud.sol_telefono)
+				|| angular.isUndefined($scope.solicitud.sol_fecha)
+				|| angular.isUndefined($scope.solicitud.sol_fechaNac)
+				|| angular.isUndefined($scope.solicitud.sol_estado)
+				|| angular.isUndefined($scope.solicitud.sol_numMiem)
+				|| angular.isUndefined($scope.solicitud.sol_sexo)
+				|| angular.isUndefined($scope.solicitud.sol_disc)
+				|| angular.isUndefined($scope.solicitud.sol_codprov)
+				|| angular.isUndefined($scope.solicitud.sol_codciu)
+				|| angular.isUndefined($scope.contrasenia2)
+				) {
+			$scope.addAlert('danger','Error! Ingrese los campos correctamente.')
 		}
 		if ($scope.alerts.length == 0) {
 			UsuarioSrv.modificar($scope.usuario, function(response) {

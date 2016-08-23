@@ -39,7 +39,7 @@ app.controller("UsuarioCrearCtrl",function($scope, UsuarioSrv, $timeout) {
 					'Error! Ingrese los campos correctamente.')
 		}
 		if ($scope.alerts.length == 0) {
-			if (existe()==false) {
+			
 				UsuarioSrv.crear($scope.usuario, function(response) {
 					$scope.addAlert("success", "Éxito! al crear el usuario");
 					$timeout(function() {
@@ -49,16 +49,17 @@ app.controller("UsuarioCrearCtrl",function($scope, UsuarioSrv, $timeout) {
 					console.log("error " + msgError);
 					$scope.addAlert("danger","Error! al crear el usuario.");
 				})
-			} else
-				$scope.addAlert("danger","Error! ya existe un usuario con ese número de cédula.");
+				
 		}
 	};
 	var existe = function() {
 		UsuarioSrv.existe($scope.usuario.usrCi, function(response) {
+			console.log(response)
 			if (response)
 				return true
 			else
 				return false
+			
 		}, function(msgError) {
 			console.log("false")
 		})

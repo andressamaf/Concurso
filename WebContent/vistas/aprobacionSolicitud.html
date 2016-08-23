@@ -3,23 +3,32 @@
 		ng-class="'alert-' + (alert.type || 'warning')"
 		close="closeAlert($index)">{{alert.msg}}</div>
 </div>
+<div class="alert alert-dismissible alert-danger"
+	ng-show="fecha.inicio>fecha.fin">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Error!</strong> fecha de fin debe ser mayor que la fecha de
+	inicio
+</div>
 <div class="row">
 	<form class="form-horizontal" id="loginForm" method="get">
 		<fieldset>
-			<legend>Aprobación de Solicitud</legend>
+			<legend>Aprobaci&oacute;n de Solicitud</legend>
 			<div>
 				<div class="form-group">
 					<label for="fecha" class="col-lg-2 control-label">Fecha de
 						incio</label>
 					<div class="col-lg-4">
+
 						<input type="date" class="form-control" id="fechaInicio"
-							placeholder="yyyy-mm-dd" name="fechaInicio" ng-model="fecha.inicio"/>
+							placeholder="yyyy-mm-dd" name="fechaInicio"
+							ng-model="fecha.inicio" />
+
 					</div>
 					<label for="nombre" class="col-lg-2 control-label">Fecha
 						fin</label>
 					<div class="col-lg-4">
 						<input type="date" class="form-control" id="fechaFin"
-							placeholder="yyyy-mm-dd" name="fechaFin" ng-model="fecha.fin"/>
+							placeholder="yyyy-mm-dd" name="fechaFin" ng-model="fecha.fin" />
 					</div>
 					<input type="hidden" class="form-control" id="fechaSolicitud"
 						name="fechaSolicitud" /> <input type="hidden" value="S"
@@ -60,7 +69,7 @@
 							</td>
 							<td>
 								<button type="button" class="btn btn-default"
-								ng-click="rechazar(r)">Rechazar</button>
+									ng-click="rechazar(r)">Rechazar</button>
 							</td>
 						</tr>
 					</tbody>

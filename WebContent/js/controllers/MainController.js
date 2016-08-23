@@ -34,6 +34,10 @@ app.config(function($routeProvider) {
 		templateUrl : 'vistas/usuario/administrar.html',
 		controller : 'UsuarioAdministrarCtrl'
 	})
+	.when('/usuario/home', {
+		templateUrl : 'vistas/usuario/home.html',
+		controller : 'HomeUsrCtrl'
+	})
 	.when('/usuario/crear', {
 		templateUrl : 'vistas/usuario/crear.html',
 		controller : 'UsuarioCrearCtrl'

@@ -19,7 +19,7 @@ app.controller("UsuarioAdministrarCtrl", function($scope, UsuarioSrv) {
 				}
 			}
 		}, function() {
-			$scope.addAlert("danger", "Error! al eliminar actor");
+			$scope.addAlert("danger", "Error! al eliminar usuario");
 		})
 	};
 

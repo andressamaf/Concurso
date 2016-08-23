@@ -34,8 +34,10 @@ app.controller("ReporteCtrl", function($scope, SolicitudSrv, $filter, $timeout) 
 	};
 	$scope.fecha = {
 		inicio : "",
-		fin : ""
+		fin : "",
+		actual: ""
 	}
+	$scope.fecha.actual = new Date();
 	$scope.generar = function() {
 		$scope.fecha.inicio = $filter('date')($scope.fecha.inicio, "yyyy-MM-dd")
 		$scope.fecha.fin = $filter('date')($scope.fecha.fin, "yyyy-MM-dd")
@@ -49,7 +51,7 @@ app.controller("ReporteCtrl", function($scope, SolicitudSrv, $filter, $timeout) 
 						var img = canvas.toDataURL("image/png")
 						var doc = new jsPDF();
 						doc.addImage(img, 'JPEG',20,20)
-						doc.save("reporte.pdf")
+						doc.save("reporte."+$filter('date')($scope.fecha.actual,"yyyy-MM-dd H:mm")+".pdf")
 					}
 				})
 			}, 3000
